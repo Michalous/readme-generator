@@ -1,4 +1,13 @@
 const inquirer = require("inquirer")
+const fs = require('fs')
+const path = require('path')
+const generateMarkdown = require("./utils/generateMarkdown")
+
+
+// function to write README file
+function writeToFile(fileName, data) {
+}
+
 
 function init() {
 inquirer
@@ -67,6 +76,11 @@ inquirer
     .then((answer) => {
         console.log("Hello " + answer.title, answer.contribution)
         console.log(answer.license)
+        var res = generateMarkdown(answer)
+        fs.writeFile('mynewfile2.md', `${res}`, function (err, file) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
     })
 }
 init()
